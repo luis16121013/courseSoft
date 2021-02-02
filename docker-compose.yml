@@ -1,0 +1,32 @@
+version: "3.8"
+services:
+  goWeb:
+    image: golang:1.15.6
+    container_name: goService
+    volumes:
+      - "./:/app"
+    working_dir: "/app"
+    environment:
+      - PASSWORD=rootpw
+      - DATABASE=softproyect
+      - HOST=localhost
+    ports:
+      - "8080:3000"
+    depends_on:
+      - mysqlRepository
+
+    entrypoint: "make run"
+
+  mysqlRepository:
+    image: mysql:5.7
+    container_name: mysqlService
+    ports:
+      - "3306:3306"
+    volumes:
+      - "./.db:/var/lib/mysql"
+    environment:
+      MYSQL_ROOT_PASSWORD: PASSWORD
+      MYSQL_DATABASE: DATABASE
+      MYSQL_USER: luis
+      MYSQL_PASSWORD: luisdb
+
