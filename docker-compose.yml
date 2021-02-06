@@ -15,7 +15,7 @@ services:
     depends_on:
       - mysqlRepository
 
-    entrypoint: "make run"
+        #entrypoint: "make run"
 
   mysqlRepository:
     image: mysql:5.7

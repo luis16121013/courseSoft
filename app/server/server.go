@@ -6,6 +6,7 @@ import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/template/html"
 	"github.com/luis16121013/courseSoft/app/route"
+	"github.com/luis16121013/courseSoft/app/storage"
 )
 
 func StartServer(port string) {
@@ -17,8 +18,14 @@ func StartServer(port string) {
 
 	app.Static("/", "./app/public")
 
+	//created Repository mysql
+	repository,err := storage.NewMyslRepository()
+	if err != nil {
+		panic(err)
+	}
+
 	app.Get("/", LoginView)
-	route.CreateRoutes(app)
+	route.CreateRoutes(repository,app)
 
 	log.Fatal(app.Listen(":" + port))
 }

@@ -5,7 +5,8 @@ import "fmt"
 var (
 	Username string = "root"
 	Password string = "rootpw"
-	Host     string = "127.0.0.1"
+	//Host     string = "127.19.0.2"
+	Host     string = "localhost"
 	Port     int    = 3306
 	Database string = "softproyect"
 )
